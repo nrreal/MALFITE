@@ -7,13 +7,19 @@ package boshy.malfite.utils;
 public class ReportLog {
 
     public static String getErrorBuilder(Object objectMethod, Exception e) {
-        String constructorError = new String();
+        String constructorError = "";
+        String conClazz = "";
+        String conMethod = "";
         try {
-            constructorError += "\nError:  " + e != null ? e.getMessage() : "No Especifica" + "\nClase : " + objectMethod != null ? objectMethod.getClass().getEnclosingClass().getCanonicalName() : "No Especifica" + "\nMetodo : " + objectMethod != null ? objectMethod.getClass().getEnclosingMethod().getName() : "No Especifica";
+            constructorError = e != null ? "\nError : " + e.getMessage() : "\nError : No Especifica";
+            conClazz = objectMethod != null
+                    ? "\nClase : " + objectMethod.getClass().getEnclosingClass().getCanonicalName() : "\nClase : No Especifica";
+            conMethod = objectMethod != null
+                    ? "\nMetodo: " + objectMethod.getClass().getEnclosingMethod().getName() : "\nMetodo : No Especifica";
         } catch (SecurityException exception) {
             System.out.println("ocurrio un error dentro del validador de errores (XD)\n Error : " + exception);
         }
-        return constructorError;
+        return constructorError + conClazz + conMethod;
     }
 
     //--

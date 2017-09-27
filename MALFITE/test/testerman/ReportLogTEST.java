@@ -36,10 +36,11 @@ public class ReportLogTEST {
     @Test
     public void test() {
         try {
-            int f = 1 / 0;
-        } catch (Exception e) {
+            int ff = Integer.parseInt("a");
+        } catch (NumberFormatException e) {
             System.out.println(ReportLog.getErrorBuilder(new Object() {
             }, e));
         }
     }
+    
 }

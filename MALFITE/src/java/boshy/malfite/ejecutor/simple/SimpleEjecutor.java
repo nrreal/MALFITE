@@ -4,6 +4,8 @@ import boshy.malfite.utils.ReportLog;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,5 +41,34 @@ public class SimpleEjecutor {
             System.err.println("sin sentencia para ejecutar");
         }
 
+    }
+
+    public static class timeOut extends Thread {
+
+        private static boolean detener;
+
+        @Override
+        public void run() {
+            try {
+                sleep(5000);
+                System.exit(0);
+            } catch (InterruptedException ex) {
+                System.out.println("intern Ex : " + ex.getMessage());
+            }
+        }
+
+        public static void runn() {
+            if (detener) {
+                runn();
+            }
+        }
+
+        public static void stap() {
+            detener = false;
+        }
+
+        public static void continoe() {
+            detener = true;
+        }
     }
 }
